@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:news_app_full/widgets/news_tile.dart';
 
 class SeeMore extends StatelessWidget {
   const SeeMore({Key? key}) : super(key: key);
@@ -47,6 +48,7 @@ class SeeMore extends StatelessWidget {
                         fit: BoxFit.cover,
                         image: NetworkImage(Get.arguments['urlToImage']))),
               ),
+
               Text(
                 Get.arguments['publishedAt'],
                 style:

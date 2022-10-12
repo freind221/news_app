@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_app_full/controller/category_controller.dart';
 import 'package:news_app_full/controller/news_controller.dart';
+import 'package:news_app_full/views/check.dart';
+import 'package:news_app_full/widgets/news_tile.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -107,76 +109,84 @@ class _HomePageState extends State<HomePage> {
                   itemCount: controller.articlesList.length,
                   itemBuilder: ((context, index) {
                     return GestureDetector(
-                      onTap: (() {
-                        Get.toNamed('/detail', arguments: {
-                          "urlToImage": controller
-                              .articlesList[index].urlToImage
-                              .toString(),
-                          "title":
-                              controller.articlesList[index].title.toString(),
-                          "content":
-                              controller.articlesList[index].content.toString(),
-                          "author":
-                              controller.articlesList[index].author.toString(),
-                          "publishedAt": controller
-                              .articlesList[index].publishedAt
-                              .toString(),
-                          "url": controller.articlesList[index].url.toString(),
-                        });
-                      }),
-                      // child: NewsTile(
-                      //     imgUrl:
-                      //         '${controller.articlesList[index].urlToImage}',
-                      //     desc:
-                      //         '${controller.articlesList[index].description}',
-                      //     title: '${controller.articlesList[index].title}',
-                      //     posturl: '${controller.articlesList[index].url}')
-                      child: Container(
-                          margin: const EdgeInsets.only(bottom: 24),
-                          width: MediaQuery.of(context).size.width,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 16),
-                            alignment: Alignment.bottomCenter,
-                            decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    bottomRight: Radius.circular(6),
-                                    bottomLeft: Radius.circular(6))),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                ClipRRect(
-                                    borderRadius: BorderRadius.circular(6),
-                                    child: Image.network(
-                                      "${controller.articlesList[index].urlToImage}",
-                                      height: 200,
-                                      width: MediaQuery.of(context).size.width,
-                                      fit: BoxFit.cover,
-                                    )),
-                                const SizedBox(
-                                  height: 12,
-                                ),
-                                Text(
-                                  "${controller.articlesList[index].title}",
-                                  maxLines: 2,
-                                  style: const TextStyle(
-                                      color: Colors.black87,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                const SizedBox(
-                                  height: 4,
-                                ),
-                                Text(
-                                  "${controller.articlesList[index].description}",
-                                  maxLines: 2,
-                                  style: const TextStyle(
-                                      color: Colors.black54, fontSize: 14),
-                                )
-                              ],
-                            ),
-                          )),
-                    );
+                        onTap: (() {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ArticleView(
+                                        postUrl: controller
+                                            .articlesList[index].url
+                                            .toString(),
+                                      )));
+                          // Get.toNamed('/name', arguments: {
+                          //   "urlToImage": controller
+                          //       .articlesList[index].urlToImage
+                          //       .toString(),
+                          //   "title":
+                          //       controller.articlesList[index].title.toString(),
+                          //   "content":
+                          //       controller.articlesList[index].content.toString(),
+                          //   "author":
+                          //       controller.articlesList[index].author.toString(),
+                          //   "publishedAt": controller
+                          //       .articlesList[index].publishedAt
+                          //       .toString(),
+                          //   "url": controller.articlesList[index].url.toString(),
+                          // });
+                        }),
+                        child: NewsTile(
+                            imgUrl:
+                                '${controller.articlesList[index].urlToImage}',
+                            desc:
+                                '${controller.articlesList[index].description}',
+                            title: '${controller.articlesList[index].title}',
+                            posturl: '${controller.articlesList[index].url}')
+                        // child: Container(
+                        //     margin: const EdgeInsets.only(bottom: 24),
+                        //     width: MediaQuery.of(context).size.width,
+                        //     child: Container(
+                        //       padding: const EdgeInsets.symmetric(horizontal: 16),
+                        //       alignment: Alignment.bottomCenter,
+                        //       decoration: const BoxDecoration(
+                        //           borderRadius: BorderRadius.only(
+                        //               bottomRight: Radius.circular(6),
+                        //               bottomLeft: Radius.circular(6))),
+                        //       child: Column(
+                        //         crossAxisAlignment: CrossAxisAlignment.start,
+                        //         mainAxisSize: MainAxisSize.min,
+                        //         children: <Widget>[
+                        //           ClipRRect(
+                        //               borderRadius: BorderRadius.circular(6),
+                        //               child: Image.network(
+                        //                 "${controller.articlesList[index].urlToImage}",
+                        //                 height: 200,
+                        //                 width: MediaQuery.of(context).size.width,
+                        //                 fit: BoxFit.cover,
+                        //               )),
+                        //           const SizedBox(
+                        //             height: 12,
+                        //           ),
+                        //           Text(
+                        //             "${controller.articlesList[index].title}",
+                        //             maxLines: 2,
+                        //             style: const TextStyle(
+                        //                 color: Colors.black87,
+                        //                 fontSize: 20,
+                        //                 fontWeight: FontWeight.w500),
+                        //           ),
+                        //           const SizedBox(
+                        //             height: 4,
+                        //           ),
+                        //           Text(
+                        //             "${controller.articlesList[index].description}",
+                        //             maxLines: 2,
+                        //             style: const TextStyle(
+                        //                 color: Colors.black54, fontSize: 14),
+                        //           )
+                        //         ],
+                        //       ),
+                        //     )),
+                        );
                   }));
             }
           }),

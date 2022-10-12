@@ -2,8 +2,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_app_full/views/apple_news.dart';
+import 'package:news_app_full/views/check.dart';
 import 'package:news_app_full/views/home_page.dart';
 import 'package:news_app_full/views/news_view.dart';
+import 'package:news_app_full/views/test.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,10 +23,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.indigo),
       initialRoute: '/',
+      //home: const MyHomePage(),
       getPages: [
         GetPage(name: "/", page: () => HomePage()),
         GetPage(name: "/detail", page: () => const SeeMore()),
-        GetPage(name: "/apple", page: () => AppleNews())
+        GetPage(name: "/apple", page: () => AppleNews()),
+        //GetPage(name: "/name", page: () =>  ArticleView())
       ],
     );
   }
